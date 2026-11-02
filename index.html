@@ -3,26 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZEYLA HQ 🪆 Resmi Ruskim Operasyon Merkezi</title>
+    <title>Zeyla ❤️ Benim Güzel Ruskim</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Syne:wght@700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
         :root {
-            --cream: #FFFDF7;
-            --paper: #F4EFE6;
-            --ink: #141413;
-            --lemon: #FFE600;
-            --coral: #FF5252;
-            --mint: #00E5A3;
-            --sky: #5CE1E6;
-            --lilac: #D4B2FF;
-            --orange: #FF8A00;
-            --border: 3px solid #141413;
-            --shadow: 6px 6px 0px #141413;
-            --shadow-sm: 4px 4px 0px #141413;
-            --shadow-lg: 10px 10px 0px #141413;
+            --bg-main: #FFF8FA;
+            --bg-secondary: #FDF0F5;
+            --card-bg: #FFFFFF;
+            --text-dark: #231924;
+            --text-muted: #6E5A6F;
+            --rose: #FF4D7D;
+            --rose-soft: #FFE3EC;
+            --coral: #FF6B6B;
+            --mint: #2EC4B6;
+            --mint-soft: #E0FAF7;
+            --lavender: #845EC2;
+            --lavender-soft: #F1EAFF;
+            --amber: #FF9F1C;
+            --amber-soft: #FFF3DF;
+            --border-soft: 1.5px solid #F3DCE4;
+            --shadow-card: 0 14px 35px rgba(255, 77, 125, 0.08), 0 4px 12px rgba(35, 25, 36, 0.04);
+            --shadow-hover: 0 20px 42px rgba(255, 77, 125, 0.15), 0 6px 16px rgba(35, 25, 36, 0.06);
         }
 
         * {
@@ -33,193 +37,214 @@
         }
 
         body {
-            background-color: var(--cream);
-            background-image: radial-gradient(#141413 1px, transparent 1px);
-            background-size: 24px 24px;
-            color: var(--ink);
-            font-family: 'Space Grotesk', sans-serif;
+            background: linear-gradient(160deg, #FFF9FB 0%, #FCEEF4 50%, #F7ECFA 100%);
+            background-attachment: fixed;
+            color: var(--text-dark);
+            font-family: 'Plus Jakarta Sans', sans-serif;
             overflow-x: hidden;
-            line-height: 1.5;
+            line-height: 1.6;
         }
 
-        h1, h2, h3, .display-font {
-            font-family: 'Syne', sans-serif;
-            text-transform: uppercase;
-            letter-spacing: -0.02em;
+        /* Ambient soft decorative blobs */
+        .bg-blob-1, .bg-blob-2 {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.55;
+        }
+        .bg-blob-1 {
+            width: 380px;
+            height: 380px;
+            background: #FFD1E1;
+            top: -100px;
+            right: -80px;
+        }
+        .bg-blob-2 {
+            width: 420px;
+            height: 420px;
+            background: #E5D4FF;
+            bottom: -120px;
+            left: -100px;
         }
 
-        .mono {
-            font-family: 'JetBrains Mono', monospace;
-        }
-
-        /* Top Ticker Tape */
-        .marquee-bar {
-            background: var(--lemon);
-            border-bottom: var(--border);
-            padding: 10px 0;
-            overflow: hidden;
-            white-space: nowrap;
+        /* Top Sticky Bar */
+        .top-nav {
             position: sticky;
-            top: 0;
+            top: 14px;
             z-index: 100;
+            max-width: 1040px;
+            margin: 14px auto 0;
+            padding: 0 20px;
         }
 
-        .marquee-track {
-            display: inline-block;
-            animation: marquee 22s linear infinite;
-            font-family: 'JetBrains Mono', monospace;
-            font-weight: 700;
-            font-size: 0.9rem;
-        }
-
-        @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        /* Layout Container */
-        .container {
-            max-width: 1080px;
-            margin: 0 auto;
-            padding: 32px 20px 90px;
-        }
-
-        /* Neo-Brutalist Reusable Components */
-        .brutal-card {
-            background: #fff;
-            border: var(--border);
-            border-radius: 20px;
-            box-shadow: var(--shadow);
-            padding: 28px;
-            position: relative;
-            transition: transform 0.15s ease, box-shadow 0.15s ease;
-        }
-
-        .brutal-btn {
-            background: var(--lemon);
-            color: var(--ink);
-            border: var(--border);
-            border-radius: 14px;
-            padding: 14px 24px;
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 700;
-            font-size: 1rem;
-            cursor: pointer;
-            box-shadow: var(--shadow-sm);
-            transition: transform 0.1s ease, box-shadow 0.1s ease;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            user-select: none;
-        }
-
-        .brutal-btn:hover {
-            transform: translate(-2px, -2px);
-            box-shadow: 6px 6px 0px var(--ink);
-        }
-
-        .brutal-btn:active {
-            transform: translate(3px, 3px);
-            box-shadow: 1px 1px 0px var(--ink);
-        }
-
-        .sticker {
-            display: inline-block;
-            border: 2.5px solid var(--ink);
-            padding: 6px 14px;
+        .top-nav-inner {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            border: var(--border-soft);
             border-radius: 50px;
-            font-weight: 700;
-            font-size: 0.85rem;
-            box-shadow: 3px 3px 0px var(--ink);
-            background: #fff;
-        }
-
-        /* Hero Section */
-        .hero-box {
-            background: var(--lilac);
-            border: var(--border);
-            border-radius: 26px;
-            box-shadow: var(--shadow-lg);
-            padding: 44px 32px;
-            margin-bottom: 40px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-top-row {
+            padding: 10px 22px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-bottom: 24px;
+            box-shadow: 0 8px 25px rgba(255, 77, 125, 0.08);
+        }
+
+        .brand-title {
+            font-weight: 800;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .music-pill {
+            background: var(--rose-soft);
+            color: var(--rose);
+            border: 1px solid rgba(255, 77, 125, 0.25);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 700;
+            font-size: 0.82rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .music-pill.playing {
+            background: var(--rose);
+            color: #fff;
+            box-shadow: 0 4px 14px rgba(255, 77, 125, 0.35);
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 1040px;
+            margin: 0 auto;
+            padding: 28px 20px 90px;
+        }
+
+        /* Hero Section */
+        .hero-card {
+            background: linear-gradient(135deg, #FFFFFF 0%, #FFF4F8 100%);
+            border: var(--border-soft);
+            border-radius: 32px;
+            padding: 48px 36px;
+            margin-bottom: 32px;
+            box-shadow: var(--shadow-card);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--rose-soft);
+            color: var(--rose);
+            font-weight: 700;
+            font-size: 0.85rem;
+            padding: 7px 18px;
+            border-radius: 50px;
+            margin-bottom: 20px;
         }
 
         .hero-title {
-            font-size: clamp(2.4rem, 6vw, 4.6rem);
-            line-height: 0.98;
-            margin-bottom: 20px;
-            color: var(--ink);
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.4rem, 5.5vw, 4rem);
+            line-height: 1.12;
+            color: var(--text-dark);
+            margin-bottom: 16px;
         }
 
-        .hero-title .highlight-box {
-            background: var(--lemon);
-            padding: 0 12px;
-            border: 3px solid var(--ink);
-            border-radius: 12px;
-            display: inline-block;
-            transform: rotate(-1.5deg);
-            box-shadow: 4px 4px 0px var(--ink);
+        .hero-title span {
+            color: var(--rose);
+            font-style: italic;
         }
 
-        .hero-desc {
-            font-size: clamp(1.05rem, 2.2vw, 1.3rem);
-            max-width: 700px;
-            margin-bottom: 28px;
-            font-weight: 500;
-            background: rgba(255, 255, 255, 0.75);
-            border: 2px solid var(--ink);
-            padding: 14px 18px;
-            border-radius: 14px;
+        .hero-sub {
+            font-size: clamp(1.02rem, 2vw, 1.18rem);
+            color: var(--text-muted);
+            max-width: 640px;
+            margin: 0 auto 28px;
         }
 
-        /* Live Stats Strip */
+        .btn-primary {
+            background: linear-gradient(135deg, #FF4D7D 0%, #FF7597 100%);
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            padding: 14px 28px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 700;
+            font-size: 0.96rem;
+            cursor: pointer;
+            box-shadow: 0 10px 24px rgba(255, 77, 125, 0.3);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 28px rgba(255, 77, 125, 0.42);
+        }
+
+        /* Stats Strip */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
             gap: 18px;
-            margin-bottom: 44px;
+            margin-bottom: 32px;
         }
 
-        .stat-card {
-            border: var(--border);
-            border-radius: 18px;
-            padding: 20px;
-            box-shadow: var(--shadow);
+        .stat-box {
+            background: var(--card-bg);
+            border: var(--border-soft);
+            border-radius: 24px;
+            padding: 22px 18px;
             text-align: center;
+            box-shadow: var(--shadow-card);
+            transition: transform 0.2s ease;
         }
 
-        .stat-num {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 2.3rem;
-            font-weight: 700;
-            line-height: 1.1;
-            margin: 6px 0;
+        .stat-box:hover {
+            transform: translateY(-4px);
+        }
+
+        .stat-icon {
+            font-size: 1.8rem;
+            margin-bottom: 6px;
+        }
+
+        .stat-value {
+            font-size: 1.85rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            line-height: 1.2;
         }
 
         .stat-label {
-            font-size: 0.85rem;
-            font-weight: 700;
-            text-transform: uppercase;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-top: 4px;
         }
 
-        /* Two Column Bento Grid */
+        /* Bento Grid */
         .bento-grid {
             display: grid;
             grid-template-columns: repeat(12, 1fr);
-            gap: 26px;
-            margin-bottom: 44px;
+            gap: 24px;
+            margin-bottom: 32px;
         }
 
         .col-6 { grid-column: span 6; }
@@ -231,469 +256,507 @@
             .col-6, .col-7, .col-5 { grid-column: span 12; }
         }
 
-        .card-tag {
+        .card {
+            background: var(--card-bg);
+            border: var(--border-soft);
+            border-radius: 28px;
+            padding: 30px;
+            box-shadow: var(--shadow-card);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-badge {
             display: inline-block;
-            background: var(--ink);
-            color: #fff;
-            font-family: 'JetBrains Mono', monospace;
+            align-self: flex-start;
             font-size: 0.75rem;
-            padding: 4px 10px;
-            border-radius: 6px;
+            font-weight: 700;
+            padding: 5px 12px;
+            border-radius: 50px;
             margin-bottom: 12px;
             text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
-        /* Widget 1: Ruskim Detector Radar */
-        .meter-bar-wrap {
-            background: var(--paper);
-            border: var(--border);
-            height: 36px;
-            border-radius: 12px;
+        .card h2 {
+            font-size: 1.45rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+        }
+
+        .card p.sub {
+            font-size: 0.92rem;
+            color: var(--text-muted);
+            margin-bottom: 18px;
+        }
+
+        /* Game 1: Ruskim Radar */
+        .progress-track {
+            background: var(--bg-secondary);
+            height: 22px;
+            border-radius: 50px;
             overflow: hidden;
-            margin: 18px 0;
-            position: relative;
+            margin-bottom: 16px;
+            border: 1px solid #F3DCE4;
         }
 
-        .meter-bar-fill {
+        .progress-fill {
             height: 100%;
-            width: 15%;
-            background: repeating-linear-gradient(
-                45deg,
-                var(--coral),
-                var(--coral) 12px,
-                var(--lemon) 12px,
-                var(--lemon) 24px
-            );
-            border-right: var(--border);
+            width: 25%;
+            background: linear-gradient(90deg, #FF4D7D, #FF9F1C);
+            border-radius: 50px;
             transition: width 0.5s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
-        .detector-log {
-            background: var(--ink);
-            color: var(--mint);
-            font-family: 'JetBrains Mono', monospace;
-            padding: 14px;
-            border-radius: 12px;
-            font-size: 0.88rem;
-            min-height: 76px;
-            margin-bottom: 16px;
+        .radar-box {
+            background: #FAF5F8;
+            border: 1px dashed #E5C5D2;
+            border-radius: 16px;
+            padding: 16px;
+            font-size: 0.92rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            min-height: 74px;
             display: flex;
             align-items: center;
+            margin-bottom: 18px;
         }
 
-        /* Widget 2: Feed & Calm Down Zeyla Mini-Game */
-        .pet-stage {
-            background: var(--paper);
-            border: var(--border);
-            border-radius: 16px;
+        /* Game 2: Make Zeyla Happy */
+        .mood-stage {
+            background: linear-gradient(135deg, #FFF5F8, #F7F0FF);
+            border-radius: 20px;
             padding: 20px;
             text-align: center;
-            margin: 16px 0;
-            position: relative;
+            margin-bottom: 16px;
+            border: 1px solid #F3DCE4;
         }
 
-        .zeyla-avatar {
-            font-size: 4.5rem;
+        .avatar-emoji {
+            font-size: 4rem;
             line-height: 1;
             margin-bottom: 10px;
             display: inline-block;
-            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transition: transform 0.25s ease;
         }
 
-        .mood-status-pill {
+        .mood-badge {
             display: inline-block;
-            background: var(--coral);
-            color: #fff;
-            border: 2px solid var(--ink);
-            padding: 4px 14px;
-            border-radius: 30px;
+            background: #fff;
+            color: var(--rose);
             font-weight: 700;
-            font-size: 0.9rem;
-            margin-bottom: 10px;
+            font-size: 0.85rem;
+            padding: 6px 16px;
+            border-radius: 50px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.04);
         }
 
-        .feed-buttons {
+        .action-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 10px;
         }
 
-        /* Widget 3: Slot Machine (Ne Ismarlıyorsun?) */
-        .slot-machine {
-            background: var(--sky);
-            border: var(--border);
-            border-radius: 22px;
-            padding: 28px;
-            box-shadow: var(--shadow);
+        .btn-soft {
+            background: var(--bg-main);
+            border: 1.5px solid #F0D5DF;
+            color: var(--text-dark);
+            padding: 11px 14px;
+            border-radius: 14px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 700;
+            font-size: 0.88rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
         }
 
-        .slot-window {
+        .btn-soft:hover {
+            background: var(--rose-soft);
+            border-color: var(--rose);
+            transform: translateY(-2px);
+        }
+
+        /* Game 3: Slot Machine */
+        .slot-reels {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 14px;
-            background: var(--ink);
+            gap: 12px;
+            background: linear-gradient(135deg, #FCEEF4, #F2E8FF);
             padding: 16px;
-            border-radius: 16px;
-            margin: 20px 0;
+            border-radius: 22px;
+            margin-bottom: 16px;
         }
 
-        .slot-reel {
+        .reel-box {
             background: #fff;
-            border: 3px solid var(--ink);
-            border-radius: 12px;
-            height: 110px;
+            border-radius: 16px;
+            height: 105px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            font-size: 2.6rem;
-            box-shadow: inset 0 -6px 0 rgba(0,0,0,0.12);
+            font-size: 2.4rem;
+            box-shadow: 0 6px 14px rgba(35, 25, 36, 0.05);
         }
 
-        .slot-reel span {
+        .reel-box span {
             font-size: 0.78rem;
             font-weight: 700;
+            color: var(--text-muted);
             margin-top: 4px;
-            color: var(--ink);
         }
 
-        /* Widget 4: 3-Question Funny Quiz */
-        .quiz-option {
+        .slot-msg {
+            background: var(--amber-soft);
+            color: #9C5B00;
+            padding: 12px 16px;
+            border-radius: 14px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        /* Game 4: Quiz */
+        .quiz-btn {
             width: 100%;
             text-align: left;
-            background: var(--paper);
-            border: 2.5px solid var(--ink);
-            border-radius: 12px;
+            background: #FAF6F8;
+            border: 1.5px solid #EFE0E6;
             padding: 12px 16px;
+            border-radius: 14px;
             margin-bottom: 10px;
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 700;
-            font-size: 0.95rem;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text-dark);
             cursor: pointer;
-            transition: all 0.15s;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            transition: all 0.2s ease;
         }
 
-        .quiz-option:hover {
-            background: var(--lemon);
-            transform: translateX(4px);
+        .quiz-btn:hover {
+            background: var(--lavender-soft);
+            border-color: var(--lavender);
         }
 
-        .quiz-option.correct {
-            background: var(--mint);
+        .quiz-btn.correct {
+            background: var(--mint-soft);
+            border-color: var(--mint);
+            color: #0E6BA8;
         }
 
-        /* Widget 5: Official Relationship Contract */
-        .contract-card {
-            background: #fff;
-            border: var(--border);
-            border-radius: 22px;
-            padding: 32px;
-            box-shadow: var(--shadow-lg);
-            position: relative;
-        }
-
-        .contract-list {
+        /* Game 5: Contract */
+        .contract-items {
             list-style: none;
-            margin: 20px 0;
+            margin: 14px 0 22px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 14px;
         }
 
-        .contract-list li {
-            padding: 12px 14px;
-            border-bottom: 2px dashed #ccc;
+        .contract-items li {
+            background: #FFF9FB;
+            border: 1px solid #F3DCE4;
+            padding: 16px;
+            border-radius: 18px;
+            font-size: 0.92rem;
             display: flex;
-            align-items: flex-start;
             gap: 12px;
-            font-weight: 500;
+            align-items: flex-start;
         }
 
-        .stamp-badge {
+        .stamp-approved {
             display: none;
-            border: 4px solid var(--coral);
-            color: var(--coral);
-            font-family: 'Syne', sans-serif;
+            background: var(--mint-soft);
+            color: #0F766E;
+            border: 2px dashed var(--mint);
             font-weight: 800;
-            font-size: 1.5rem;
-            padding: 8px 18px;
-            border-radius: 12px;
-            text-transform: uppercase;
-            transform: rotate(-8deg);
-            margin-top: 16px;
-            text-align: center;
+            font-size: 0.95rem;
+            padding: 10px 20px;
+            border-radius: 50px;
         }
 
-        /* Finale Runaway Button Arena */
-        .arena-card {
-            background: var(--lemon);
-            border: var(--border);
-            border-radius: 24px;
-            padding: 40px 24px;
-            box-shadow: var(--shadow-lg);
+        /* Finale Card */
+        .finale-card {
+            background: linear-gradient(135deg, #FFE5EE 0%, #F3E8FF 100%);
+            border: var(--border-soft);
+            border-radius: 32px;
+            padding: 46px 24px;
             text-align: center;
+            box-shadow: var(--shadow-card);
             position: relative;
             overflow: hidden;
-            min-height: 280px;
         }
 
-        .arena-btns {
+        .finale-btns {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 18px;
-            margin-top: 26px;
+            gap: 16px;
+            margin-top: 24px;
             flex-wrap: wrap;
-            min-height: 70px;
+            min-height: 64px;
+        }
+
+        .btn-runaway {
+            background: #fff;
+            color: var(--text-muted);
+            border: 1.5px solid #E2CBD4;
+            padding: 13px 26px;
+            border-radius: 50px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 700;
+            font-size: 0.92rem;
+            cursor: pointer;
+            transition: transform 0.2s ease;
         }
 
         footer {
             text-align: center;
-            margin-top: 60px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            font-weight: 700;
+            margin-top: 50px;
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            font-weight: 600;
         }
     </style>
 </head>
 <body>
 
-    <!-- Top News Ticker -->
-    <div class="marquee-bar">
-        <div class="marquee-track">
-            🚨 SON DAKİKA: 07.05.2026 TARİHİNDEN BERİ DÜNYANIN EN TATLI RUSKİM'İ SEÇİLDİ 🪆 &bull; UYARI: BU SİTEDE ZEYLA HER ZAMAN %100 HAKLIDIR &bull; ОСТОРОЖНО: ОЧЕНЬ КРАСИВАЯ ДЕВУШКА (DİKKAT: AŞIRI GÜZEL KIZ) &bull; 🚨 SON DAKİKA: 07.05.2026 TARİHİNDEN BERİ DÜNYANIN EN TATLI RUSKİM'İ SEÇİLDİ 🪆 &bull; UYARI: BU SİTEDE ZEYLA HER ZAMAN %100 HAKLIDIR &bull;
+    <div class="bg-blob-1"></div>
+    <div class="bg-blob-2"></div>
+
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+        <div class="top-nav-inner">
+            <div class="brand-title">
+                <span>🪆</span>
+                <span>Zeyla &bull; Benim Güzel Ruskim</span>
+            </div>
+            <button class="music-pill playing" id="music-btn" onclick="toggleMelody(event)">
+                <span id="music-icon">🔊</span>
+                <span id="music-label">Müzik: Açık</span>
+            </button>
         </div>
-    </div>
+    </nav>
 
     <div class="container">
 
-        <!-- HERO SECTION -->
-        <section class="hero-box">
-            <div class="hero-top-row">
-                <span class="sticker" style="background: var(--mint);">🪆 RESMİ RUSKİM KULÜBÜ v2.0</span>
-                <button class="brutal-btn" style="padding: 8px 16px; font-size: 0.85rem;" onclick="toggle8BitMusic()" id="music-btn">
-                    🔊 8-Bit Oyun Müziği: KAPALI
-                </button>
+        <!-- HERO -->
+        <section class="hero-card">
+            <div class="hero-badge">
+                <span>✨</span>
+                <span>07.05.2026 &bull; Моя любимая Зейла</span>
             </div>
-
             <h1 class="hero-title">
-                SELAM <span class="highlight-box">ZEYLA!</span><br>
-                BENİM GÜZEL RUSKİM 🇷🇺✨
+                Hoş Geldin <span>Zeyla</span>,<br>
+                Benim Tatlı Ruskim ❤️
             </h1>
-
-            <p class="hero-desc">
-                Sıkıcı ve klasik romantik siteleri boşver! Burası <strong>7 Mayıs 2026</strong>'da hayatıma giren, yarı Rus inatçılığına rağmen gülüşüyle beni anında eriten <strong>Zeyla</strong> için yapılmış interaktif oyun alanı! Aşağıdaki butonları kurcala 👇
+            <p class="hero-sub">
+                Yüzünde tatlı bir tebessüm oluşsun diye senin için küçük oyunlar, şans çarkı ve eğlenceli sürprizlerle dolu bu özel sayfayı hazırladım.
             </p>
-
-            <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-                <button class="brutal-btn" style="background: var(--coral); color: #fff;" onclick="triggerStickerBomb()">
-                    💥 Ekrana Kalp & Matruşka Patlat!
-                </button>
-                <span class="sticker" style="background: #fff; align-self: center;">
-                    Durum: Моя любимая (Favori İnsanım ❤️)
-                </span>
-            </div>
+            <button class="btn-primary" onclick="triggerConfetti()">
+                <span>🎉 Kalp & Konfeti Patlat</span>
+            </button>
         </section>
 
-        <!-- LIVE STATS (SINCE 07.05.2026) -->
+        <!-- LIVE STATS -->
         <section class="stats-grid">
-            <div class="stat-card" style="background: var(--mint);">
-                <div class="stat-label">7 Mayıs'tan Beri Geçen</div>
-                <div class="stat-num" id="stat-days">0 GÜN</div>
-                <div style="font-size: 0.8rem; font-weight: 700;" id="stat-clock">00s : 00d : 00sn</div>
+            <div class="stat-box">
+                <div class="stat-icon">📅</div>
+                <div class="stat-value" id="stat-days">0 Gün</div>
+                <div class="stat-label" id="stat-clock">7 Mayıs'tan Beri Birlikte</div>
             </div>
-
-            <div class="stat-card" style="background: var(--sky);">
+            <div class="stat-box">
+                <div class="stat-icon">👑</div>
+                <div class="stat-value">%100</div>
                 <div class="stat-label">Zeyla'nın Haklı Çıkma Oranı</div>
-                <div class="stat-num">%100.0</div>
-                <div style="font-size: 0.8rem; font-weight: 700;">Hata Payı: %0 (Tartışmaya Kapalı)</div>
             </div>
-
-            <div class="stat-card" style="background: var(--lemon);">
-                <div class="stat-label">Ruskim Güzellik Seviyesi</div>
-                <div class="stat-num">9999+</div>
-                <div style="font-size: 0.8rem; font-weight: 700;">Sistem Limitini Aştı 📈</div>
+            <div class="stat-box">
+                <div class="stat-icon">🪆</div>
+                <div class="stat-value">9999+</div>
+                <div class="stat-label">Ruskim Tatlılık & Güzellik Puanı</div>
             </div>
-
-            <div class="stat-card" style="background: var(--coral); color: #fff;">
-                <div class="stat-label">Sana Olan Zaafım</div>
-                <div class="stat-num">&infin; SONSUZ</div>
-                <div style="font-size: 0.8rem; font-weight: 700;">Tek Gülüşüne Yelkenler Suda ⛵</div>
+            <div class="stat-box">
+                <div class="stat-icon">💖</div>
+                <div class="stat-value">Sonsuz</div>
+                <div class="stat-label">Gülüşüne Olan Zaafım</div>
             </div>
         </section>
 
-        <!-- BENTO INTERACTIVE GAMES -->
+        <!-- BENTO GAMES -->
         <div class="bento-grid">
 
-            <!-- GAME 1: RUSKİM ENERJİ & İNATÇILIK ÖLÇER -->
-            <div class="brutal-card col-6">
-                <span class="card-tag">LABORATUVAR TESTİ #01</span>
-                <h2 style="font-size: 1.7rem; margin-bottom: 8px;">☢️ RUSKİM RADARI</h2>
-                <p style="font-size: 0.95rem; margin-bottom: 12px;">
-                    Zeyla'nın anlık tatlılık, Rus geni ve inatçılık seviyesini ölçmek için aşağıdaki tarayıcıyı çalıştır!
-                </p>
+            <!-- GAME 1: RUSKİM ANALİZİ -->
+            <div class="card col-6">
+                <div>
+                    <span class="card-badge" style="background: var(--rose-soft); color: var(--rose);">Tatlılık Dedektörü</span>
+                    <h2>✨ Ruskim Enerji Ölçer</h2>
+                    <p class="sub">Zeyla'nın anlık güzellik, tatlılık ve inatçılık seviyesini test etmek için tarayıcıyı başlat:</p>
 
-                <div class="meter-bar-wrap">
-                    <div class="meter-bar-fill" id="radar-bar"></div>
+                    <div class="progress-track">
+                        <div class="progress-fill" id="radar-bar"></div>
+                    </div>
+
+                    <div class="radar-box" id="radar-log">
+                        Tarama hazır! Analiz etmek için aşağıdaki butona dokun 👇
+                    </div>
                 </div>
-
-                <div class="detector-log" id="radar-log">
-                    > Sistem hazır. Tarama başlatmak için butona bas...
-                </div>
-
-                <button class="brutal-btn" style="width: 100%; background: var(--orange); color: #fff;" onclick="runRadarScan()">
-                    🔍 ZEYLA'YI ANALİZ ET
+                <button class="btn-primary" style="width: 100%; justify-content: center;" onclick="runRadarScan()">
+                    🔍 Zeyla'yı Analiz Et
                 </button>
             </div>
 
-            <!-- GAME 2: SİNİRLİ ZEYLA'YI MUTLU ETME OYUNU -->
-            <div class="brutal-card col-6">
-                <span class="card-tag">MİNİ OYUN #02</span>
-                <h2 style="font-size: 1.7rem; margin-bottom: 8px;">🪆 RUSKİM'İ MUTLU ET!</h2>
-                <p style="font-size: 0.95rem;">
-                    Zeyla biraz acıkmış ve trip atıyor! Onu dünyanın en mutlu kızı yapmak için doğru taktikleri kullan:
-                </p>
+            <!-- GAME 2: ZEYLA'YI MUTLU ET -->
+            <div class="card col-6">
+                <div>
+                    <span class="card-badge" style="background: var(--lavender-soft); color: var(--lavender);">Mini Oyun</span>
+                    <h2>🥰 Ruskim'in Keyfini Yerine Getir!</h2>
+                    <p class="sub">Zeyla biraz acıkmış veya hafif trip atıyor olabilir! Onu mutlu etmek için doğru hamleleri seç:</p>
 
-                <div class="pet-stage">
-                    <div class="zeyla-avatar" id="zeyla-face">😒</div>
-                    <br>
-                    <div class="mood-status-pill" id="zeyla-status">Durum: Hafif Trip Atıyor (%20 Mutlu)</div>
+                    <div class="mood-stage">
+                        <div class="avatar-emoji" id="zeyla-face">😒</div>
+                        <br>
+                        <span class="mood-badge" id="zeyla-status">Hafif Trip Modu (%20 Mutlu)</span>
+                    </div>
                 </div>
 
-                <div class="feed-buttons">
-                    <button class="brutal-btn" style="background: var(--mint); padding: 10px;" onclick="boostMood(25, '☕ Kahve & Tatlı verildi!')">
-                        ☕ Kahve & Tatlı Ver
-                    </button>
-                    <button class="brutal-btn" style="background: var(--lemon); padding: 10px;" onclick="boostMood(25, '👑 Haklısın Aşkım denildi!')">
-                        👑 "Sen Haklısın" De
-                    </button>
-                    <button class="brutal-btn" style="background: var(--lilac); padding: 10px;" onclick="boostMood(25, '🤗 Sımsıkı sarıldın!')">
-                        🤗 Sımsıkı Sarıl
-                    </button>
-                    <button class="brutal-btn" style="background: var(--sky); padding: 10px;" onclick="boostMood(25, '😍 Rusça İltifat Edildi!')">
-                        🇷🇺 "Красавица" De
-                    </button>
+                <div class="action-grid">
+                    <button class="btn-soft" onclick="boostMood(25, '☕ Kahve & Tatlı ısmarlandı!')">☕ Kahve & Tatlı Ver</button>
+                    <button class="btn-soft" onclick="boostMood(25, '👑 Sen haklısın aşkım denildi!')">👑 "Sen Haklısın" De</button>
+                    <button class="btn-soft" onclick="boostMood(25, '🤗 Sımsıkı sarıldın!')">🤗 Sımsıkı Sarıl</button>
+                    <button class="btn-soft" onclick="boostMood(25, '🇷🇺 Красавица (Güzelim) denildi!')">🇷🇺 "Красавица" De</button>
                 </div>
             </div>
 
-            <!-- GAME 3: SLOT MACHINE - BANA NE ISMARLIYORSUN -->
-            <div class="slot-machine col-7">
-                <span class="card-tag" style="background: #fff; color: var(--ink);">ŞANS OYUNU #03</span>
-                <h2 style="font-size: 1.9rem; margin-bottom: 6px;">🎰 BUGÜN BANA NE ISMARLIYORSUN?</h2>
-                <p style="font-size: 0.95rem; font-weight: 700;">
-                    Kolu çek Ruskim! Çıkan ödülü sana söz veriyorum yapacağız (Ekran görüntüsü alıp bana atman yeterli 😎):
-                </p>
+            <!-- GAME 3: SLOT MACHINE -->
+            <div class="card col-7">
+                <div>
+                    <span class="card-badge" style="background: var(--amber-soft); color: #B86B00;">Şans Çarkı</span>
+                    <h2>🎰 Bugün Sana Ne Ismarlıyorum?</h2>
+                    <p class="sub">Çarkı çevir Ruskim! Şansına ne çıkarsa sözüm söz, ekran görüntüsü alıp bana gönder:</p>
 
-                <div class="slot-window">
-                    <div class="slot-reel" id="reel-1">☕<span>Kahve</span></div>
-                    <div class="slot-reel" id="reel-2">🍰<span>Tatlı</span></div>
-                    <div class="slot-reel" id="reel-3">🎬<span>Sinema</span></div>
+                    <div class="slot-reels">
+                        <div class="reel-box" id="reel-1">☕<span>Kahve</span></div>
+                        <div class="reel-box" id="reel-2">🍰<span>Tatlı</span></div>
+                        <div class="reel-box" id="reel-3">🎬<span>Sinema</span></div>
+                    </div>
+
+                    <div class="slot-msg" id="slot-result">
+                        🎲 Şansını denemek için çarkı çevir!
+                    </div>
                 </div>
 
-                <div id="slot-result" class="mono" style="background: #fff; border: 2px solid var(--ink); padding: 12px; border-radius: 12px; margin-bottom: 16px; font-weight: 700; text-align: center;">
-                    🎲 Kolu çekmek için aşağıdaki butona bas!
-                </div>
-
-                <button class="brutal-btn" style="width: 100%; background: var(--coral); color: #fff; font-size: 1.15rem;" onclick="spinSlotMachine()" id="spin-btn">
-                    🕹️ ŞANS ÇARKINI ÇEVİR!
+                <button class="btn-primary" style="width: 100%; justify-content: center;" id="spin-btn" onclick="spinSlotMachine()">
+                    🕹️ Şans Çarkını Çevir!
                 </button>
             </div>
 
-            <!-- GAME 4: ZEYLA BİLGİ YARIŞMASI -->
-            <div class="brutal-card col-5" style="background: var(--paper);">
-                <span class="card-tag">MİNİ TEST #04</span>
-                <h2 style="font-size: 1.6rem; margin-bottom: 8px;">🕵️‍♀️ HIZLI RUSKİM TESTİ</h2>
-                <p style="font-size: 0.9rem; margin-bottom: 16px;" id="quiz-question-text">
-                    <strong>Soru 1/3:</strong> Olası bir fikir ayrılığında kim haklıdır?
-                </p>
+            <!-- GAME 4: MİNİ QUIZ -->
+            <div class="card col-5">
+                <div>
+                    <span class="card-badge" style="background: var(--mint-soft); color: #0F766E;">Mini Test</span>
+                    <h2>🕵️‍♀️ 3 Soruda Zeyla Testi</h2>
+                    <p class="sub" id="quiz-question-text">
+                        <strong>Soru 1/3:</strong> Olası bir tartışmada kim haklıdır?
+                    </p>
 
-                <div id="quiz-options">
-                    <button class="quiz-option" onclick="answerQuiz(this, true)">
-                        <span>A) Her zaman Zeyla</span> <span>👉</span>
-                    </button>
-                    <button class="quiz-option" onclick="answerQuiz(this, true)">
-                        <span>B) Benim Güzel Ruskim</span> <span>👉</span>
-                    </button>
-                    <button class="quiz-option" onclick="answerQuiz(this, true)">
-                        <span>C) A ve B şıklarının ikisi de!</span> <span>👉</span>
-                    </button>
+                    <div id="quiz-options">
+                        <button class="quiz-btn" onclick="answerQuiz(this)">
+                            <span>A) Her zaman Zeyla</span> <span>👉</span>
+                        </button>
+                        <button class="quiz-btn" onclick="answerQuiz(this)">
+                            <span>B) Benim Güzel Ruskim</span> <span>👉</span>
+                        </button>
+                        <button class="quiz-btn" onclick="answerQuiz(this)">
+                            <span>C) İkisi de (Tartışmaya kapalı)</span> <span>👉</span>
+                        </button>
+                    </div>
                 </div>
 
-                <div id="quiz-feedback" class="mono" style="font-size: 0.85rem; font-weight: 700; color: var(--ink); margin-top: 10px; min-height: 40px;"></div>
+                <div id="quiz-feedback" style="font-size: 0.85rem; font-weight: 700; color: var(--rose); min-height: 24px; margin-top: 8px;"></div>
             </div>
 
-            <!-- GAME 5: RESMİ SEVGİLİLİK SÖZLEŞMESİ -->
-            <div class="contract-card col-12">
-                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
-                    <span class="card-tag">RESMİ BELGE NO: 07-05-2026</span>
-                    <span class="mono" style="font-size: 0.85rem; font-weight: 700;">DOSYA: ZEYLA_RUSKIM_VIP.PDF</span>
+            <!-- GAME 5: SEVGİLİLİK SÖZLEŞMESİ -->
+            <div class="card col-12">
+                <div>
+                    <span class="card-badge" style="background: var(--rose-soft); color: var(--rose);">07.05.2026 Özel Anlaşması</span>
+                    <h2>📜 Resmi "Ruskim" Mutluluk Sözleşmesi</h2>
+                    <p class="sub">Tanıştığımız 7 Mayıs 2026 tarihinden itibaren geçerli olan altın kurallarımız:</p>
+
+                    <ul class="contract-items">
+                        <li>
+                            <span>🍫</span>
+                            <div><strong>Madde 1:</strong> Zeyla acıktığında veya uykusu geldiğinde söylediği hiçbir sözden sorumlu tutulamaz; acil tatlı/yemek takviyesi yapılır.</div>
+                        </li>
+                        <li>
+                            <span>🤗</span>
+                            <div><strong>Madde 2:</strong> "Benim bir şeyim yok" cümlesi "Bana ilgi göster ve gönlümü al" demektir. Anında sarılma protokolü devreye girer.</div>
+                        </li>
+                        <li>
+                            <span>🎬</span>
+                            <div><strong>Madde 3:</strong> Nereye gidileceğine veya ne izleneceğine karar verilemediğinde son sözü her zaman Ruskim söyler.</div>
+                        </li>
+                        <li>
+                            <span>❤️</span>
+                            <div><strong>Madde 4:</strong> Bu anlaşma süresizdir ve Zeyla'nın güzel yüzünü her gün güldürmek birinci önceliktir.</div>
+                        </li>
+                    </ul>
                 </div>
 
-                <h2 style="font-size: 2rem; margin-top: 8px;">📜 RESMİ "RUSKİM" MUTLULUK SÖZLEŞMESİ</h2>
-                <p style="color: #444;">7 Mayıs 2026 tarihinden itibaren geçerli olmak üzere taraflar aşağıdaki maddeleri peşinen kabul eder:</p>
-
-                <ul class="contract-list">
-                    <li>
-                        <span>✅</span>
-                        <div><strong>Madde 1:</strong> Zeyla acıktığında veya uykusu geldiğinde söylediği hiçbir sözden hukuken sorumlu tutulamaz; derhal yemek/çikolata temin edilir.</div>
-                    </li>
-                    <li>
-                        <span>✅</span>
-                        <div><strong>Madde 2:</strong> "Benim bir şeyim yok" cümlesi "Bana ilgi göster ve gönlümü al" anlamına gelir. Anında sarılma protokolü uygulanır.</div>
-                    </li>
-                    <li>
-                        <span>✅</span>
-                        <div><strong>Madde 3:</strong> Nereye gidileceğine veya ne izleneceğine karar verilemediğinde son sözü her zaman Ruskim söyler.</div>
-                    </li>
-                    <li>
-                        <span>✅</span>
-                        <div><strong>Madde 4:</strong> Bu sözleşme süresizdir ve Zeyla'nın yüzünü her gün güldürmek birinci önceliktir ❤️</div>
-                    </li>
-                </ul>
-
-                <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
-                    <button class="brutal-btn" style="background: var(--mint);" onclick="signContract()" id="contract-btn">
+                <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px;">
+                    <button class="btn-primary" id="contract-btn" onclick="signContract()">
                         ✍️ Sözleşmeyi Onayla & Mühürle
                     </button>
-                    <div class="stamp-badge" id="contract-stamp">
-                        ★ ZEYLA TARAFINDAN ONAYLANDI ★
+                    <div class="stamp-approved" id="contract-stamp">
+                        ✓ ZEYLA TARAFINDAN ONAYLANDI ❤️
                     </div>
                 </div>
             </div>
 
         </div>
 
-        <!-- FINALE RUNAWAY BUTTON -->
-        <section class="arena-card">
-            <span class="sticker" style="background: #fff; margin-bottom: 12px;">FİNAL SORUSU 🎯</span>
-            <h2 style="font-size: clamp(1.8rem, 4.5vw, 3rem);">BENDEN DAHA ÇOK SENİ SEVEN BİRİ VAR MI?</h2>
-            <p style="font-weight: 700; margin-top: 6px;">Cesaretin varsa "Var / Hayır" butonuna basmayı dene Ruskim 😜</p>
+        <!-- FINALE RUNAWAY QUESTION -->
+        <section class="finale-card">
+            <div class="hero-badge" style="background: #fff;">🎯 Günün Son Sorusu</div>
+            <h2 style="font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 4vw, 2.7rem); margin-bottom: 8px;">
+                Seni Benden Daha Çok Seven Biri Var mı?
+            </h2>
+            <p style="color: var(--text-muted); font-weight: 500;">
+                İstersen "Var / Bilmem" butonuna basmayı dene Ruskim 😜
+            </p>
 
-            <div class="arena-btns">
-                <button class="brutal-btn" style="background: var(--mint); font-size: 1.2rem; padding: 18px 34px;" id="yes-final-btn" onclick="winFinale()">
-                    🥰 YOK TABİİ Kİ, EN ÇOK SEN! ❤️
+            <div class="finale-btns">
+                <button class="btn-primary" style="font-size: 1.08rem; padding: 16px 34px;" onclick="winFinale()">
+                    🥰 Yok Tabii Ki, En Çok Sen! ❤️
                 </button>
-                <button class="brutal-btn" style="background: #fff;" id="no-final-btn" onmouseover="dodgeButton()" ontouchstart="dodgeButton()">
+                <button class="btn-runaway" id="no-final-btn" onmouseover="dodgeButton()" ontouchstart="dodgeButton()">
                     Var / Bilmem 🙄
                 </button>
             </div>
 
-            <div id="finale-win-msg" style="display: none; margin-top: 24px; background: #fff; border: var(--border); border-radius: 16px; padding: 20px; box-shadow: var(--shadow-sm);">
-                <h3 style="font-size: 1.8rem; color: var(--coral);">🎉 DOĞRU CEVAP BENİM GÜZEL RUSKİM! 🎉</h3>
-                <p style="font-weight: 700; margin-top: 6px;">
-                    İyi ki 7 Mayıs'ta hayatıma girdin Zeyla! Yüzün hep böyle gülsün, seni çok seviyorum! (Я тебя очень люблю ❤️🪆)
+            <div id="finale-win-msg" style="display: none; margin-top: 24px; background: #fff; border-radius: 20px; padding: 22px; box-shadow: var(--shadow-card);">
+                <h3 style="font-size: 1.5rem; color: var(--rose); margin-bottom: 6px;">
+                    🎉 Biliyordum Benim Güzel Ruskim! 🎉
+                </h3>
+                <p style="font-weight: 600; color: var(--text-dark);">
+                    İyi ki 7 Mayıs'ta hayatıma girdin Zeyla! Yüzün hep böyle gülsün, seni çok seviyorum! (Я тебя очень люблю ❤️)
                 </p>
             </div>
         </section>
 
         <footer>
-            DESIGNED FOR ZEYLA (RUSKİM) &bull; ZERO BORING ROMANCE, 100% FUN &bull; 07.05.2026 &infin;
+            Zeyla (Ruskim) için sevgiyle hazırlandı &bull; 07.05.2026 &infin;
         </footer>
 
     </div>
 
     <script>
-        // 1. Live Counter since 07.05.2026
+        // 1. Live Counter since May 7, 2026
         const start = new Date(2026, 4, 7, 0, 0, 0);
         function updateStats() {
             const now = new Date();
@@ -703,84 +766,79 @@
             const mins = Math.floor((diff / 1000 / 60) % 60);
             const secs = Math.floor((diff / 1000) % 60);
 
-            document.getElementById('stat-days').textContent = `${days} GÜN`;
+            document.getElementById('stat-days').textContent = `${days} Gün`;
             document.getElementById('stat-clock').textContent =
-                `${String(hours).padStart(2,'0')}s : ${String(mins).padStart(2,'0')}d : ${String(secs).padStart(2,'0')}sn`;
+                `${String(hours).padStart(2,'0')}s ${String(mins).padStart(2,'0')}d ${String(secs).padStart(2,'0')}sn birlikte`;
         }
         updateStats();
         setInterval(updateStats, 1000);
 
-        // 2. Confetti Bomb
-        function triggerStickerBomb() {
+        // 2. Confetti
+        function triggerConfetti() {
             if (typeof confetti === 'function') {
                 confetti({
-                    particleCount: 90,
-                    spread: 90,
+                    particleCount: 85,
+                    spread: 80,
                     origin: { y: 0.6 },
-                    colors: ['#FFE600', '#FF5252', '#00E5A3', '#5CE1E6', '#141413']
+                    colors: ['#FF4D7D', '#FF9F1C', '#2EC4B6', '#845EC2']
                 });
             }
         }
 
-        // 3. Ruskim Radar Scanner
+        // 3. Radar Scanner
         const radarMessages = [
-            "> Rus genleri taranıyor... %50 Rus, %100 Başımın Tatlı Belası tespit edildi! 🪆",
-            "> Güzellik sensörü aşırı ısındı! 🔥 Limit: %9999 (Sistem Çöktü)",
-            "> İnatçılık seviyesi: MAX! Ama tek bir gülüşüyle her şey affedildi 😍",
-            "> Sonuç: Dünyanın en tatlı, en komik ve en güzel Ruskim'i! ❤️"
+            "✨ Analiz Sonucu: %50 Rus zarafeti, %100 tatlılık ve başımın en güzel belası! 🪆",
+            "🔥 Güzellik sensörü aşırı yüklendi! Sonuç: %9999 Kusursuz Ruskim!",
+            "😍 İnatçılık seviyesi yüksek çıktı ama tek bir gülüşüyle her şey affedildi!",
+            "❤️ Sonuç: Kalbimin tartışmasız en favori insanı!"
         ];
         let radarStep = 0;
 
         function runRadarScan() {
-            const bar = document.getElementById('radar-bar');
-            const log = document.getElementById('radar-log');
-            bar.style.width = '100%';
-            log.textContent = radarMessages[radarStep % radarMessages.length];
+            document.getElementById('radar-bar').style.width = '100%';
+            document.getElementById('radar-log').textContent = radarMessages[radarStep % radarMessages.length];
             radarStep++;
-            triggerStickerBomb();
+            triggerConfetti();
         }
 
-        // 4. Feed & Make Zeyla Happy Mini-Game
+        // 4. Make Zeyla Happy Game
         let happiness = 20;
         function boostMood(amount, actionText) {
             happiness = Math.min(100, happiness + amount);
             const face = document.getElementById('zeyla-face');
             const status = document.getElementById('zeyla-status');
 
-            face.style.transform = 'scale(1.25) rotate(8deg)';
-            setTimeout(() => face.style.transform = 'scale(1) rotate(0deg)', 220);
+            face.style.transform = 'scale(1.22)';
+            setTimeout(() => face.style.transform = 'scale(1)', 220);
 
             if (happiness < 50) {
                 face.textContent = "🤨";
-                status.style.background = "#FF8A00";
                 status.textContent = `${actionText} (%${happiness} Mutlu)`;
             } else if (happiness < 100) {
                 face.textContent = "😊";
-                status.style.background = "#5CE1E6";
-                status.style.color = "#141413";
                 status.textContent = `${actionText} (%${happiness} Keyfi Yerine Geldi!)`;
             } else {
                 face.textContent = "🥰👑";
-                status.style.background = "#00E5A3";
-                status.style.color = "#141413";
-                status.textContent = `🎉 %100 MUTLU RUSKİM! (Bütün Tripler Sona Erdi ❤️)`;
-                triggerStickerBomb();
+                status.style.background = "#E0FAF7";
+                status.style.color = "#0F766E";
+                status.textContent = `🎉 %100 Mutlu Ruskim! (Gülüşün dünyalara bedel ❤️)`;
+                triggerConfetti();
             }
         }
 
-        // 5. Slot Machine ("Bugün Bana Ne Ismarlıyorsun?")
+        // 5. Slot Machine
         const prizes = [
-            { r1: "☕", t1: "Kahve", r2: "🍰", t2: "Cheesecake", r3: "🤗", t3: "Sarılma", desc: "KAZANDIN: Özel Kahve + Tatlı + Sınırsız Sarılma Paketi! 📸 Ekran görüntüsü al!" },
-            { r1: "🍔", t1: "Burger", r2: "🍟", t2: "Patates", r3: "🍦", t3: "Dondurma", desc: "KAZANDIN: Ziyafet Paketi! Ne yemek istersen benden Ruskim! 📸" },
-            { r1: "🎬", t1: "Sinema", r2: "🍿", t2: "Mısır", r3: "👑", t3: "Patron", desc: "KAZANDIN: Sinema & Film Gecesi (Filmi %100 sen seçiyorsun)! 📸" },
-            { r1: "🎁", t1: "Sürpriz", r2: "💐", t2: "Çiçek", r3: "💋", t3: "Öpücük", desc: "JACKPOT! 🎰 Sürpriz Hediye + Kocaman Öpücük Kazandın Zeyla! 📸" }
+            { r1: "☕", t1: "Kahve", r2: "🍰", t2: "Tatlı", r3: "🤗", t3: "Sarılma", desc: "🎁 KAZANDIN: Kahve + Tatlı + Sınırsız Sarılma Paketi! (Ekran görüntüsü alıp bana at 📸)" },
+            { r1: "🍔", t1: "Yemek", r2: "🍟", t2: "Keyif", r3: "🍦", t3: "Dondurma", desc: "🎁 KAZANDIN: İstediğin Yerde Yemek Ziyafeti Benden Ruskim! 📸" },
+            { r1: "🎬", t1: "Sinema", r2: "🍿", t2: "Mısır", r3: "👑", t3: "Patron", desc: "🎁 KAZANDIN: Film Gecesi! (İzleyeceğimiz filmi %100 sen seçiyorsun) 📸" },
+            { r1: "💐", t1: "Çiçek", r2: "🎁", t2: "Sürpriz", r3: "💋", t3: "Öpücük", desc: "🎰 JACKPOT! Sürpriz Hediye + Kocaman Öpücük Kazandın Zeyla! 📸" }
         ];
 
         function spinSlotMachine() {
             const btn = document.getElementById('spin-btn');
             const res = document.getElementById('slot-result');
             btn.disabled = true;
-            res.textContent = "🎰 Çarklar dönüyor... Şansına ne çıkacak bakalım!";
+            res.textContent = "🎰 Çark dönüyor... Bakalım şansına ne çıkacak!";
 
             let spins = 0;
             const interval = setInterval(() => {
@@ -798,123 +856,167 @@
                     document.getElementById('reel-3').innerHTML = `${winner.r3}<span>${winner.t3}</span>`;
                     res.textContent = winner.desc;
                     btn.disabled = false;
-                    triggerStickerBomb();
+                    triggerConfetti();
                 }
             }, 90);
         }
 
-        // 6. Funny 3-Question Quiz
+        // 6. Quiz
         const quizData = [
             {
-                q: "<strong>Soru 1/3:</strong> Olası bir fikir ayrılığında kim haklıdır?",
-                opts: ["A) Her zaman Zeyla", "B) Benim Güzel Ruskim", "C) İkisi de (Tartışmasız)"],
-                msg: "✅ Doğru! Bu sorunun yanlış cevabı yok, her türlü Ruskim haklı!"
+                q: "<strong>Soru 1/3:</strong> Olası bir tartışmada kim haklıdır?",
+                opts: ["A) Her zaman Zeyla", "B) Benim Güzel Ruskim", "C) İkisi de (Tartışmaya kapalı)"],
+                msg: "✅ Doğru cevap! Her koşulda Ruskim haklıdır ❤️"
             },
             {
-                q: "<strong>Soru 2/3:</strong> Zeyla 'Benim bir şeyim yok' diyorsa ne yapılmalıdır?",
-                opts: ["A) Hemen çikolata/yemek verip sarılınmalı", "B) Güzelliği övülmeli", "C) Hepsi aynı anda yapılmalı!"],
-                msg: "✅ Harika! Tehlike anında çikolata ve sarılma hayat kurtarır 😎"
+                q: "<strong>Soru 2/3:</strong> Zeyla 'Bir şeyim yok' diyorsa ne yapılmalıdır?",
+                opts: ["A) Hemen tatlı/kahve alıp sarılınmalı", "B) Güzelliği övülmeli", "C) Hepsi aynı anda yapılmalı!"],
+                msg: "✅ Süper! Tatlı ve sarılma her zaman işe yarar 🥰"
             },
             {
                 q: "<strong>Soru 3/3:</strong> 7 Mayıs 2026'da ne oldu?",
                 opts: ["A) Dünyanın en tatlı Ruskim'i ile tanışıldı", "B) En güzel hikaye başladı", "C) Kalbimin favori insanı bulundu ❤️"],
-                msg: "🏆 TEST BİTTİ: 100 PUAN! Sen dünyanın en tatlı sevgilisisin Zeyla!"
+                msg: "🏆 100 TAM PUAN! İyi ki varsın Zeyla!"
             }
         ];
         let currentQuiz = 0;
 
-        function answerQuiz(btnEl, isCorrect) {
+        function answerQuiz(btnEl) {
             btnEl.classList.add('correct');
-            const feedback = document.getElementById('quiz-feedback');
-            feedback.textContent = quizData[currentQuiz].msg;
+            document.getElementById('quiz-feedback').textContent = quizData[currentQuiz].msg;
 
             setTimeout(() => {
                 currentQuiz = (currentQuiz + 1) % quizData.length;
                 document.getElementById('quiz-question-text').innerHTML = quizData[currentQuiz].q;
                 const container = document.getElementById('quiz-options');
                 container.innerHTML = quizData[currentQuiz].opts.map(opt => `
-                    <button class="quiz-option" onclick="answerQuiz(this, true)">
+                    <button class="quiz-btn" onclick="answerQuiz(this)">
                         <span>${opt}</span> <span>👉</span>
                     </button>
                 `).join('');
-            }, 1400);
+            }, 1300);
         }
 
-        // 7. Contract Stamp
+        // 7. Contract
         function signContract() {
             document.getElementById('contract-stamp').style.display = 'inline-block';
             const btn = document.getElementById('contract-btn');
-            btn.textContent = "✓ MÜHÜRLENDİ (İtiraz Edilemez!)";
-            btn.style.background = "#FFE600";
-            triggerStickerBomb();
+            btn.textContent = "✓ Sözleşme Mühürlendi!";
+            triggerConfetti();
         }
 
-        // 8. Runaway Button Finale
-        const funnyDodges = [
+        // 8. Runaway Button
+        const dodges = [
             "Yakalayamazsın Ruskim 😜",
             "Yanlış buton! 😂",
-            "Oraya basmak yasak 🚫",
-            "Hala mı deniyorsun? 😘",
-            "Yeşil butona bas! 👉"
+            "Oraya basmak yasak 🙈",
+            "Pembe butona bas 👉",
+            "İmkansız 😘"
         ];
-        let dodgeCount = 0;
+        let dodgeIdx = 0;
 
         function dodgeButton() {
             const noBtn = document.getElementById('no-final-btn');
-            const x = (Math.random() - 0.5) * 240;
-            const y = (Math.random() - 0.5) * 110;
+            const x = (Math.random() - 0.5) * 220;
+            const y = (Math.random() - 0.5) * 100;
             noBtn.style.transform = `translate(${x}px, ${y}px)`;
-            noBtn.textContent = funnyDodges[dodgeCount % funnyDodges.length];
-            dodgeCount++;
+            noBtn.textContent = dodges[dodgeIdx % dodges.length];
+            dodgeIdx++;
         }
 
         function winFinale() {
             document.getElementById('no-final-btn').style.display = 'none';
             document.getElementById('finale-win-msg').style.display = 'block';
-            triggerStickerBomb();
-            setTimeout(triggerStickerBomb, 350);
+            triggerConfetti();
+            setTimeout(triggerConfetti, 350);
         }
 
-        // 9. Fun 8-Bit Arcade Chiptune Synthesizer (Web Audio API)
+        // 9. Default Enabled Pleasant Music Box Melody (Auto-Starts on Load / First Touch)
         let audioCtx = null;
-        let chiptuneInterval = null;
-        let playing8Bit = false;
-        const notes8Bit = [523.25, 659.25, 783.99, 1046.5, 783.99, 1046.5, 880, 698.46, 783.99, 523.25];
-        let step8Bit = 0;
+        let melodyInterval = null;
+        let isMusicOn = true; // Default ON
 
-        function play8BitBeep(freq) {
-            if (!audioCtx) return;
+        const melodyNotes = [
+            523.25, 659.25, 783.99, 1046.50, 783.99, 659.25,
+            587.33, 698.46, 880.00, 1174.66, 880.00, 698.46,
+            493.88, 659.25, 783.99, 987.77, 783.99, 659.25,
+            523.25, 659.25, 783.99, 1046.50, 783.99, 523.25
+        ];
+        let noteIdx = 0;
+
+        function playSoftChime(freq) {
+            if (!audioCtx || audioCtx.state !== 'running') return;
             const osc = audioCtx.createOscillator();
             const gain = audioCtx.createGain();
-            osc.type = 'square';
+            osc.type = 'sine';
             osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-            gain.gain.setValueAtTime(0.03, audioCtx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.18);
+
+            gain.gain.setValueAtTime(0.001, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.06, audioCtx.currentTime + 0.03);
+            gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 1.1);
+
             osc.connect(gain);
             gain.connect(audioCtx.destination);
             osc.start();
-            osc.stop(audioCtx.currentTime + 0.2);
+            osc.stop(audioCtx.currentTime + 1.15);
         }
 
-        function toggle8BitMusic() {
-            const btn = document.getElementById('music-btn');
-            if (!playing8Bit) {
-                if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-                if (audioCtx.state === 'suspended') audioCtx.resume();
-                playing8Bit = true;
-                btn.textContent = "🔊 8-Bit Oyun Müziği: AÇIK";
-                btn.style.background = "#00E5A3";
-                chiptuneInterval = setInterval(() => {
-                    play8BitBeep(notes8Bit[step8Bit % notes8Bit.length]);
-                    step8Bit++;
-                }, 220);
-            } else {
-                playing8Bit = false;
-                clearInterval(chiptuneInterval);
-                btn.textContent = "🔊 8-Bit Oyun Müziği: KAPALI";
-                btn.style.background = "#FFE600";
+        function startMusicEngine() {
+            if (!isMusicOn) return;
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            if (!melodyInterval) {
+                playSoftChime(melodyNotes[noteIdx]);
+                melodyInterval = setInterval(() => {
+                    if (isMusicOn && audioCtx && audioCtx.state === 'running') {
+                        noteIdx = (noteIdx + 1) % melodyNotes.length;
+                        playSoftChime(melodyNotes[noteIdx]);
+                    }
+                }, 420);
             }
         }
+
+        function updateMusicUI() {
+            const btn = document.getElementById('music-btn');
+            const icon = document.getElementById('music-icon');
+            const label = document.getElementById('music-label');
+            if (isMusicOn) {
+                btn.classList.add('playing');
+                icon.textContent = "🔊";
+                label.textContent = "Müzik: Açık";
+            } else {
+                btn.classList.remove('playing');
+                icon.textContent = "🔇";
+                label.textContent = "Müzik: Kapalı";
+            }
+        }
+
+        function toggleMelody(e) {
+            if (e) e.stopPropagation();
+            isMusicOn = !isMusicOn;
+            if (isMusicOn) {
+                startMusicEngine();
+            } else if (melodyInterval) {
+                clearInterval(melodyInterval);
+                melodyInterval = null;
+            }
+            updateMusicUI();
+        }
+
+        // Attempt auto-start immediately, and unlock on very first click/touch anywhere on page
+        window.addEventListener('DOMContentLoaded', () => {
+            startMusicEngine();
+        });
+        ['click', 'touchstart', 'keydown'].forEach(evt => {
+            document.addEventListener(evt, function unlockAudio() {
+                if (isMusicOn) startMusicEngine();
+                document.removeEventListener(evt, unlockAudio);
+            }, { once: true });
+        });
     </script>
 </body>
 </html>
