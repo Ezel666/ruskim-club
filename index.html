@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZEYLA HQ 🪆 Resmi Ruskim Operasyon Merkezi</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Syne:wght@700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        :root {
+            --cream: #FFFDF7;
+            --paper: #F4EFE6;
+            --ink: #141413;
+            --lemon: #FFE600;
+            --coral: #FF5252;
+            --mint: #00E5A3;
+            --sky: #5CE1E6;
+            --lilac: #D4B2FF;
+            --orange: #FF8A00;
+            --border: 3px solid #141413;
+            --shadow: 6px 6px 0px #141413;
+            --shadow-sm: 4px 4px 0px #141413;
+            --shadow-lg: 10px 10px 0px #141413;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--cream);
+            background-image: radial-gradient(#141413 1px, transparent 1px);
+            background-size: 24px 24px;
+            color: var(--ink);
+            font-family: 'Space Grotesk', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.5;
+        }
+
+        h1, h2, h3, .display-font {
+            font-family: 'Syne', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+        }
+
+        .mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Top Ticker Tape */
+        .marquee-bar {
+            background: var(--lemon);
+            border-bottom: var(--border);
+            padding: 10px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .marquee-track {
+            display: inline-block;
+            animation: marquee 22s linear infinite;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Layout Container */
+        .container {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 32px 20px 90px;
+        }
+
+        /* Neo-Brutalist Reusable Components */
+        .brutal-card {
+            background: #fff;
+            border: var(--border);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            padding: 28px;
+            position: relative;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .brutal-btn {
+            background: var(--lemon);
+            color: var(--ink);
+            border: var(--border);
+            border-radius: 14px;
+            padding: 14px 24px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.1s ease, box-shadow 0.1s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            user-select: none;
+        }
+
+        .brutal-btn:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px var(--ink);
+        }
+
+        .brutal-btn:active {
+            transform: translate(3px, 3px);
+            box-shadow: 1px 1px 0px var(--ink);
+        }
+
+        .sticker {
+            display: inline-block;
+            border: 2.5px solid var(--ink);
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            box-shadow: 3px 3px 0px var(--ink);
+            background: #fff;
+        }
+
+        /* Hero Section */
+        .hero-box {
+            background: var(--lilac);
+            border: var(--border);
+            border-radius: 26px;
+            box-shadow: var(--shadow-lg);
+            padding: 44px 32px;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-top-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .hero-title {
+            font-size: clamp(2.4rem, 6vw, 4.6rem);
+            line-height: 0.98;
+            margin-bottom: 20px;
+            color: var(--ink);
+        }
+
+        .hero-title .highlight-box {
+            background: var(--lemon);
+            padding: 0 12px;
+            border: 3px solid var(--ink);
+            border-radius: 12px;
+            display: inline-block;
+            transform: rotate(-1.5deg);
+            box-shadow: 4px 4px 0px var(--ink);
+        }
+
+        .hero-desc {
+            font-size: clamp(1.05rem, 2.2vw, 1.3rem);
+            max-width: 700px;
+            margin-bottom: 28px;
+            font-weight: 500;
+            background: rgba(255, 255, 255, 0.75);
+            border: 2px solid var(--ink);
+            padding: 14px 18px;
+            border-radius: 14px;
+        }
+
+        /* Live Stats Strip */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 18px;
+            margin-bottom: 44px;
+        }
+
+        .stat-card {
+            border: var(--border);
+            border-radius: 18px;
+            padding: 20px;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .stat-num {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2.3rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin: 6px 0;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        /* Two Column Bento Grid */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 26px;
+            margin-bottom: 44px;
+        }
+
+        .col-6 { grid-column: span 6; }
+        .col-7 { grid-column: span 7; }
+        .col-5 { grid-column: span 5; }
+        .col-12 { grid-column: span 12; }
+
+        @media (max-width: 850px) {
+            .col-6, .col-7, .col-5 { grid-column: span 12; }
+        }
+
+        .card-tag {
+            display: inline-block;
+            background: var(--ink);
+            color: #fff;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            padding: 4px 10px;
+            border-radius: 6px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        /* Widget 1: Ruskim Detector Radar */
+        .meter-bar-wrap {
+            background: var(--paper);
+            border: var(--border);
+            height: 36px;
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 18px 0;
+            position: relative;
+        }
+
+        .meter-bar-fill {
+            height: 100%;
+            width: 15%;
+            background: repeating-linear-gradient(
+                45deg,
+                var(--coral),
+                var(--coral) 12px,
+                var(--lemon) 12px,
+                var(--lemon) 24px
+            );
+            border-right: var(--border);
+            transition: width 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .detector-log {
+            background: var(--ink);
+            color: var(--mint);
+            font-family: 'JetBrains Mono', monospace;
+            padding: 14px;
+            border-radius: 12px;
+            font-size: 0.88rem;
+            min-height: 76px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Widget 2: Feed & Calm Down Zeyla Mini-Game */
+        .pet-stage {
+            background: var(--paper);
+            border: var(--border);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            margin: 16px 0;
+            position: relative;
+        }
+
+        .zeyla-avatar {
+            font-size: 4.5rem;
+            line-height: 1;
+            margin-bottom: 10px;
+            display: inline-block;
+            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .mood-status-pill {
+            display: inline-block;
+            background: var(--coral);
+            color: #fff;
+            border: 2px solid var(--ink);
+            padding: 4px 14px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .feed-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        /* Widget 3: Slot Machine (Ne Ismarlıyorsun?) */
+        .slot-machine {
+            background: var(--sky);
+            border: var(--border);
+            border-radius: 22px;
+            padding: 28px;
+            box-shadow: var(--shadow);
+        }
+
+        .slot-window {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            background: var(--ink);
+            padding: 16px;
+            border-radius: 16px;
+            margin: 20px 0;
+        }
+
+        .slot-reel {
+            background: #fff;
+            border: 3px solid var(--ink);
+            border-radius: 12px;
+            height: 110px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.6rem;
+            box-shadow: inset 0 -6px 0 rgba(0,0,0,0.12);
+        }
+
+        .slot-reel span {
+            font-size: 0.78rem;
+            font-weight: 700;
+            margin-top: 4px;
+            color: var(--ink);
+        }
+
+        /* Widget 4: 3-Question Funny Quiz */
+        .quiz-option {
+            width: 100%;
+            text-align: left;
+            background: var(--paper);
+            border: 2.5px solid var(--ink);
+            border-radius: 12px;
+            padding: 12px 16px;
+            margin-bottom: 10px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.15s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .quiz-option:hover {
+            background: var(--lemon);
+            transform: translateX(4px);
+        }
+
+        .quiz-option.correct {
+            background: var(--mint);
+        }
+
+        /* Widget 5: Official Relationship Contract */
+        .contract-card {
+            background: #fff;
+            border: var(--border);
+            border-radius: 22px;
+            padding: 32px;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+        }
+
+        .contract-list {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .contract-list li {
+            padding: 12px 14px;
+            border-bottom: 2px dashed #ccc;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-weight: 500;
+        }
+
+        .stamp-badge {
+            display: none;
+            border: 4px solid var(--coral);
+            color: var(--coral);
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: 1.5rem;
+            padding: 8px 18px;
+            border-radius: 12px;
+            text-transform: uppercase;
+            transform: rotate(-8deg);
+            margin-top: 16px;
+            text-align: center;
+        }
+
+        /* Finale Runaway Button Arena */
+        .arena-card {
+            background: var(--lemon);
+            border: var(--border);
+            border-radius: 24px;
+            padding: 40px 24px;
+            box-shadow: var(--shadow-lg);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 280px;
+        }
+
+        .arena-btns {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 18px;
+            margin-top: 26px;
+            flex-wrap: wrap;
+            min-height: 70px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top News Ticker -->
+    <div class="marquee-bar">
+        <div class="marquee-track">
+            🚨 SON DAKİKA: 07.05.2026 TARİHİNDEN BERİ DÜNYANIN EN TATLI RUSKİM'İ SEÇİLDİ 🪆 &bull; UYARI: BU SİTEDE ZEYLA HER ZAMAN %100 HAKLIDIR &bull; ОСТОРОЖНО: ОЧЕНЬ КРАСИВАЯ ДЕВУШКА (DİKKAT: AŞIRI GÜZEL KIZ) &bull; 🚨 SON DAKİKA: 07.05.2026 TARİHİNDEN BERİ DÜNYANIN EN TATLI RUSKİM'İ SEÇİLDİ 🪆 &bull; UYARI: BU SİTEDE ZEYLA HER ZAMAN %100 HAKLIDIR &bull;
+        </div>
+    </div>
+
+    <div class="container">
+
+        <!-- HERO SECTION -->
+        <section class="hero-box">
+            <div class="hero-top-row">
+                <span class="sticker" style="background: var(--mint);">🪆 RESMİ RUSKİM KULÜBÜ v2.0</span>
+                <button class="brutal-btn" style="padding: 8px 16px; font-size: 0.85rem;" onclick="toggle8BitMusic()" id="music-btn">
+                    🔊 8-Bit Oyun Müziği: KAPALI
+                </button>
+            </div>
+
+            <h1 class="hero-title">
+                SELAM <span class="highlight-box">ZEYLA!</span><br>
+                BENİM GÜZEL RUSKİM 🇷🇺✨
+            </h1>
+
+            <p class="hero-desc">
+                Sıkıcı ve klasik romantik siteleri boşver! Burası <strong>7 Mayıs 2026</strong>'da hayatıma giren, yarı Rus inatçılığına rağmen gülüşüyle beni anında eriten <strong>Zeyla</strong> için yapılmış interaktif oyun alanı! Aşağıdaki butonları kurcala 👇
+            </p>
+
+            <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                <button class="brutal-btn" style="background: var(--coral); color: #fff;" onclick="triggerStickerBomb()">
+                    💥 Ekrana Kalp & Matruşka Patlat!
+                </button>
+                <span class="sticker" style="background: #fff; align-self: center;">
+                    Durum: Моя любимая (Favori İnsanım ❤️)
+                </span>
+            </div>
+        </section>
+
+        <!-- LIVE STATS (SINCE 07.05.2026) -->
+        <section class="stats-grid">
+            <div class="stat-card" style="background: var(--mint);">
+                <div class="stat-label">7 Mayıs'tan Beri Geçen</div>
+                <div class="stat-num" id="stat-days">0 GÜN</div>
+                <div style="font-size: 0.8rem; font-weight: 700;" id="stat-clock">00s : 00d : 00sn</div>
+            </div>
+
+            <div class="stat-card" style="background: var(--sky);">
+                <div class="stat-label">Zeyla'nın Haklı Çıkma Oranı</div>
+                <div class="stat-num">%100.0</div>
+                <div style="font-size: 0.8rem; font-weight: 700;">Hata Payı: %0 (Tartışmaya Kapalı)</div>
+            </div>
+
+            <div class="stat-card" style="background: var(--lemon);">
+                <div class="stat-label">Ruskim Güzellik Seviyesi</div>
+                <div class="stat-num">9999+</div>
+                <div style="font-size: 0.8rem; font-weight: 700;">Sistem Limitini Aştı 📈</div>
+            </div>
+
+            <div class="stat-card" style="background: var(--coral); color: #fff;">
+                <div class="stat-label">Sana Olan Zaafım</div>
+                <div class="stat-num">&infin; SONSUZ</div>
+                <div style="font-size: 0.8rem; font-weight: 700;">Tek Gülüşüne Yelkenler Suda ⛵</div>
+            </div>
+        </section>
+
+        <!-- BENTO INTERACTIVE GAMES -->
+        <div class="bento-grid">
+
+            <!-- GAME 1: RUSKİM ENERJİ & İNATÇILIK ÖLÇER -->
+            <div class="brutal-card col-6">
+                <span class="card-tag">LABORATUVAR TESTİ #01</span>
+                <h2 style="font-size: 1.7rem; margin-bottom: 8px;">☢️ RUSKİM RADARI</h2>
+                <p style="font-size: 0.95rem; margin-bottom: 12px;">
+                    Zeyla'nın anlık tatlılık, Rus geni ve inatçılık seviyesini ölçmek için aşağıdaki tarayıcıyı çalıştır!
+                </p>
+
+                <div class="meter-bar-wrap">
+                    <div class="meter-bar-fill" id="radar-bar"></div>
+                </div>
+
+                <div class="detector-log" id="radar-log">
+                    > Sistem hazır. Tarama başlatmak için butona bas...
+                </div>
+
+                <button class="brutal-btn" style="width: 100%; background: var(--orange); color: #fff;" onclick="runRadarScan()">
+                    🔍 ZEYLA'YI ANALİZ ET
+                </button>
+            </div>
+
+            <!-- GAME 2: SİNİRLİ ZEYLA'YI MUTLU ETME OYUNU -->
+            <div class="brutal-card col-6">
+                <span class="card-tag">MİNİ OYUN #02</span>
+                <h2 style="font-size: 1.7rem; margin-bottom: 8px;">🪆 RUSKİM'İ MUTLU ET!</h2>
+                <p style="font-size: 0.95rem;">
+                    Zeyla biraz acıkmış ve trip atıyor! Onu dünyanın en mutlu kızı yapmak için doğru taktikleri kullan:
+                </p>
+
+                <div class="pet-stage">
+                    <div class="zeyla-avatar" id="zeyla-face">😒</div>
+                    <br>
+                    <div class="mood-status-pill" id="zeyla-status">Durum: Hafif Trip Atıyor (%20 Mutlu)</div>
+                </div>
+
+                <div class="feed-buttons">
+                    <button class="brutal-btn" style="background: var(--mint); padding: 10px;" onclick="boostMood(25, '☕ Kahve & Tatlı verildi!')">
+                        ☕ Kahve & Tatlı Ver
+                    </button>
+                    <button class="brutal-btn" style="background: var(--lemon); padding: 10px;" onclick="boostMood(25, '👑 Haklısın Aşkım denildi!')">
+                        👑 "Sen Haklısın" De
+                    </button>
+                    <button class="brutal-btn" style="background: var(--lilac); padding: 10px;" onclick="boostMood(25, '🤗 Sımsıkı sarıldın!')">
+                        🤗 Sımsıkı Sarıl
+                    </button>
+                    <button class="brutal-btn" style="background: var(--sky); padding: 10px;" onclick="boostMood(25, '😍 Rusça İltifat Edildi!')">
+                        🇷🇺 "Красавица" De
+                    </button>
+                </div>
+            </div>
+
+            <!-- GAME 3: SLOT MACHINE - BANA NE ISMARLIYORSUN -->
+            <div class="slot-machine col-7">
+                <span class="card-tag" style="background: #fff; color: var(--ink);">ŞANS OYUNU #03</span>
+                <h2 style="font-size: 1.9rem; margin-bottom: 6px;">🎰 BUGÜN BANA NE ISMARLIYORSUN?</h2>
+                <p style="font-size: 0.95rem; font-weight: 700;">
+                    Kolu çek Ruskim! Çıkan ödülü sana söz veriyorum yapacağız (Ekran görüntüsü alıp bana atman yeterli 😎):
+                </p>
+
+                <div class="slot-window">
+                    <div class="slot-reel" id="reel-1">☕<span>Kahve</span></div>
+                    <div class="slot-reel" id="reel-2">🍰<span>Tatlı</span></div>
+                    <div class="slot-reel" id="reel-3">🎬<span>Sinema</span></div>
+                </div>
+
+                <div id="slot-result" class="mono" style="background: #fff; border: 2px solid var(--ink); padding: 12px; border-radius: 12px; margin-bottom: 16px; font-weight: 700; text-align: center;">
+                    🎲 Kolu çekmek için aşağıdaki butona bas!
+                </div>
+
+                <button class="brutal-btn" style="width: 100%; background: var(--coral); color: #fff; font-size: 1.15rem;" onclick="spinSlotMachine()" id="spin-btn">
+                    🕹️ ŞANS ÇARKINI ÇEVİR!
+                </button>
+            </div>
+
+            <!-- GAME 4: ZEYLA BİLGİ YARIŞMASI -->
+            <div class="brutal-card col-5" style="background: var(--paper);">
+                <span class="card-tag">MİNİ TEST #04</span>
+                <h2 style="font-size: 1.6rem; margin-bottom: 8px;">🕵️‍♀️ HIZLI RUSKİM TESTİ</h2>
+                <p style="font-size: 0.9rem; margin-bottom: 16px;" id="quiz-question-text">
+                    <strong>Soru 1/3:</strong> Olası bir fikir ayrılığında kim haklıdır?
+                </p>
+
+                <div id="quiz-options">
+                    <button class="quiz-option" onclick="answerQuiz(this, true)">
+                        <span>A) Her zaman Zeyla</span> <span>👉</span>
+                    </button>
+                    <button class="quiz-option" onclick="answerQuiz(this, true)">
+                        <span>B) Benim Güzel Ruskim</span> <span>👉</span>
+                    </button>
+                    <button class="quiz-option" onclick="answerQuiz(this, true)">
+                        <span>C) A ve B şıklarının ikisi de!</span> <span>👉</span>
+                    </button>
+                </div>
+
+                <div id="quiz-feedback" class="mono" style="font-size: 0.85rem; font-weight: 700; color: var(--ink); margin-top: 10px; min-height: 40px;"></div>
+            </div>
+
+            <!-- GAME 5: RESMİ SEVGİLİLİK SÖZLEŞMESİ -->
+            <div class="contract-card col-12">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                    <span class="card-tag">RESMİ BELGE NO: 07-05-2026</span>
+                    <span class="mono" style="font-size: 0.85rem; font-weight: 700;">DOSYA: ZEYLA_RUSKIM_VIP.PDF</span>
+                </div>
+
+                <h2 style="font-size: 2rem; margin-top: 8px;">📜 RESMİ "RUSKİM" MUTLULUK SÖZLEŞMESİ</h2>
+                <p style="color: #444;">7 Mayıs 2026 tarihinden itibaren geçerli olmak üzere taraflar aşağıdaki maddeleri peşinen kabul eder:</p>
+
+                <ul class="contract-list">
+                    <li>
+                        <span>✅</span>
+                        <div><strong>Madde 1:</strong> Zeyla acıktığında veya uykusu geldiğinde söylediği hiçbir sözden hukuken sorumlu tutulamaz; derhal yemek/çikolata temin edilir.</div>
+                    </li>
+                    <li>
+                        <span>✅</span>
+                        <div><strong>Madde 2:</strong> "Benim bir şeyim yok" cümlesi "Bana ilgi göster ve gönlümü al" anlamına gelir. Anında sarılma protokolü uygulanır.</div>
+                    </li>
+                    <li>
+                        <span>✅</span>
+                        <div><strong>Madde 3:</strong> Nereye gidileceğine veya ne izleneceğine karar verilemediğinde son sözü her zaman Ruskim söyler.</div>
+                    </li>
+                    <li>
+                        <span>✅</span>
+                        <div><strong>Madde 4:</strong> Bu sözleşme süresizdir ve Zeyla'nın yüzünü her gün güldürmek birinci önceliktir ❤️</div>
+                    </li>
+                </ul>
+
+                <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
+                    <button class="brutal-btn" style="background: var(--mint);" onclick="signContract()" id="contract-btn">
+                        ✍️ Sözleşmeyi Onayla & Mühürle
+                    </button>
+                    <div class="stamp-badge" id="contract-stamp">
+                        ★ ZEYLA TARAFINDAN ONAYLANDI ★
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- FINALE RUNAWAY BUTTON -->
+        <section class="arena-card">
+            <span class="sticker" style="background: #fff; margin-bottom: 12px;">FİNAL SORUSU 🎯</span>
+            <h2 style="font-size: clamp(1.8rem, 4.5vw, 3rem);">BENDEN DAHA ÇOK SENİ SEVEN BİRİ VAR MI?</h2>
+            <p style="font-weight: 700; margin-top: 6px;">Cesaretin varsa "Var / Hayır" butonuna basmayı dene Ruskim 😜</p>
+
+            <div class="arena-btns">
+                <button class="brutal-btn" style="background: var(--mint); font-size: 1.2rem; padding: 18px 34px;" id="yes-final-btn" onclick="winFinale()">
+                    🥰 YOK TABİİ Kİ, EN ÇOK SEN! ❤️
+                </button>
+                <button class="brutal-btn" style="background: #fff;" id="no-final-btn" onmouseover="dodgeButton()" ontouchstart="dodgeButton()">
+                    Var / Bilmem 🙄
+                </button>
+            </div>
+
+            <div id="finale-win-msg" style="display: none; margin-top: 24px; background: #fff; border: var(--border); border-radius: 16px; padding: 20px; box-shadow: var(--shadow-sm);">
+                <h3 style="font-size: 1.8rem; color: var(--coral);">🎉 DOĞRU CEVAP BENİM GÜZEL RUSKİM! 🎉</h3>
+                <p style="font-weight: 700; margin-top: 6px;">
+                    İyi ki 7 Mayıs'ta hayatıma girdin Zeyla! Yüzün hep böyle gülsün, seni çok seviyorum! (Я тебя очень люблю ❤️🪆)
+                </p>
+            </div>
+        </section>
+
+        <footer>
+            DESIGNED FOR ZEYLA (RUSKİM) &bull; ZERO BORING ROMANCE, 100% FUN &bull; 07.05.2026 &infin;
+        </footer>
+
+    </div>
+
+    <script>
+        // 1. Live Counter since 07.05.2026
+        const start = new Date(2026, 4, 7, 0, 0, 0);
+        function updateStats() {
+            const now = new Date();
+            const diff = Math.max(0, now - start);
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const mins = Math.floor((diff / 1000 / 60) % 60);
+            const secs = Math.floor((diff / 1000) % 60);
+
+            document.getElementById('stat-days').textContent = `${days} GÜN`;
+            document.getElementById('stat-clock').textContent =
+                `${String(hours).padStart(2,'0')}s : ${String(mins).padStart(2,'0')}d : ${String(secs).padStart(2,'0')}sn`;
+        }
+        updateStats();
+        setInterval(updateStats, 1000);
+
+        // 2. Confetti Bomb
+        function triggerStickerBomb() {
+            if (typeof confetti === 'function') {
+                confetti({
+                    particleCount: 90,
+                    spread: 90,
+                    origin: { y: 0.6 },
+                    colors: ['#FFE600', '#FF5252', '#00E5A3', '#5CE1E6', '#141413']
+                });
+            }
+        }
+
+        // 3. Ruskim Radar Scanner
+        const radarMessages = [
+            "> Rus genleri taranıyor... %50 Rus, %100 Başımın Tatlı Belası tespit edildi! 🪆",
+            "> Güzellik sensörü aşırı ısındı! 🔥 Limit: %9999 (Sistem Çöktü)",
+            "> İnatçılık seviyesi: MAX! Ama tek bir gülüşüyle her şey affedildi 😍",
+            "> Sonuç: Dünyanın en tatlı, en komik ve en güzel Ruskim'i! ❤️"
+        ];
+        let radarStep = 0;
+
+        function runRadarScan() {
+            const bar = document.getElementById('radar-bar');
+            const log = document.getElementById('radar-log');
+            bar.style.width = '100%';
+            log.textContent = radarMessages[radarStep % radarMessages.length];
+            radarStep++;
+            triggerStickerBomb();
+        }
+
+        // 4. Feed & Make Zeyla Happy Mini-Game
+        let happiness = 20;
+        function boostMood(amount, actionText) {
+            happiness = Math.min(100, happiness + amount);
+            const face = document.getElementById('zeyla-face');
+            const status = document.getElementById('zeyla-status');
+
+            face.style.transform = 'scale(1.25) rotate(8deg)';
+            setTimeout(() => face.style.transform = 'scale(1) rotate(0deg)', 220);
+
+            if (happiness < 50) {
+                face.textContent = "🤨";
+                status.style.background = "#FF8A00";
+                status.textContent = `${actionText} (%${happiness} Mutlu)`;
+            } else if (happiness < 100) {
+                face.textContent = "😊";
+                status.style.background = "#5CE1E6";
+                status.style.color = "#141413";
+                status.textContent = `${actionText} (%${happiness} Keyfi Yerine Geldi!)`;
+            } else {
+                face.textContent = "🥰👑";
+                status.style.background = "#00E5A3";
+                status.style.color = "#141413";
+                status.textContent = `🎉 %100 MUTLU RUSKİM! (Bütün Tripler Sona Erdi ❤️)`;
+                triggerStickerBomb();
+            }
+        }
+
+        // 5. Slot Machine ("Bugün Bana Ne Ismarlıyorsun?")
+        const prizes = [
+            { r1: "☕", t1: "Kahve", r2: "🍰", t2: "Cheesecake", r3: "🤗", t3: "Sarılma", desc: "KAZANDIN: Özel Kahve + Tatlı + Sınırsız Sarılma Paketi! 📸 Ekran görüntüsü al!" },
+            { r1: "🍔", t1: "Burger", r2: "🍟", t2: "Patates", r3: "🍦", t3: "Dondurma", desc: "KAZANDIN: Ziyafet Paketi! Ne yemek istersen benden Ruskim! 📸" },
+            { r1: "🎬", t1: "Sinema", r2: "🍿", t2: "Mısır", r3: "👑", t3: "Patron", desc: "KAZANDIN: Sinema & Film Gecesi (Filmi %100 sen seçiyorsun)! 📸" },
+            { r1: "🎁", t1: "Sürpriz", r2: "💐", t2: "Çiçek", r3: "💋", t3: "Öpücük", desc: "JACKPOT! 🎰 Sürpriz Hediye + Kocaman Öpücük Kazandın Zeyla! 📸" }
+        ];
+
+        function spinSlotMachine() {
+            const btn = document.getElementById('spin-btn');
+            const res = document.getElementById('slot-result');
+            btn.disabled = true;
+            res.textContent = "🎰 Çarklar dönüyor... Şansına ne çıkacak bakalım!";
+
+            let spins = 0;
+            const interval = setInterval(() => {
+                const rand = prizes[Math.floor(Math.random() * prizes.length)];
+                document.getElementById('reel-1').innerHTML = `${rand.r1}<span>${rand.t1}</span>`;
+                document.getElementById('reel-2').innerHTML = `${rand.r2}<span>${rand.t2}</span>`;
+                document.getElementById('reel-3').innerHTML = `${rand.r3}<span>${rand.t3}</span>`;
+                spins++;
+
+                if (spins > 12) {
+                    clearInterval(interval);
+                    const winner = prizes[Math.floor(Math.random() * prizes.length)];
+                    document.getElementById('reel-1').innerHTML = `${winner.r1}<span>${winner.t1}</span>`;
+                    document.getElementById('reel-2').innerHTML = `${winner.r2}<span>${winner.t2}</span>`;
+                    document.getElementById('reel-3').innerHTML = `${winner.r3}<span>${winner.t3}</span>`;
+                    res.textContent = winner.desc;
+                    btn.disabled = false;
+                    triggerStickerBomb();
+                }
+            }, 90);
+        }
+
+        // 6. Funny 3-Question Quiz
+        const quizData = [
+            {
+                q: "<strong>Soru 1/3:</strong> Olası bir fikir ayrılığında kim haklıdır?",
+                opts: ["A) Her zaman Zeyla", "B) Benim Güzel Ruskim", "C) İkisi de (Tartışmasız)"],
+                msg: "✅ Doğru! Bu sorunun yanlış cevabı yok, her türlü Ruskim haklı!"
+            },
+            {
+                q: "<strong>Soru 2/3:</strong> Zeyla 'Benim bir şeyim yok' diyorsa ne yapılmalıdır?",
+                opts: ["A) Hemen çikolata/yemek verip sarılınmalı", "B) Güzelliği övülmeli", "C) Hepsi aynı anda yapılmalı!"],
+                msg: "✅ Harika! Tehlike anında çikolata ve sarılma hayat kurtarır 😎"
+            },
+            {
+                q: "<strong>Soru 3/3:</strong> 7 Mayıs 2026'da ne oldu?",
+                opts: ["A) Dünyanın en tatlı Ruskim'i ile tanışıldı", "B) En güzel hikaye başladı", "C) Kalbimin favori insanı bulundu ❤️"],
+                msg: "🏆 TEST BİTTİ: 100 PUAN! Sen dünyanın en tatlı sevgilisisin Zeyla!"
+            }
+        ];
+        let currentQuiz = 0;
+
+        function answerQuiz(btnEl, isCorrect) {
+            btnEl.classList.add('correct');
+            const feedback = document.getElementById('quiz-feedback');
+            feedback.textContent = quizData[currentQuiz].msg;
+
+            setTimeout(() => {
+                currentQuiz = (currentQuiz + 1) % quizData.length;
+                document.getElementById('quiz-question-text').innerHTML = quizData[currentQuiz].q;
+                const container = document.getElementById('quiz-options');
+                container.innerHTML = quizData[currentQuiz].opts.map(opt => `
+                    <button class="quiz-option" onclick="answerQuiz(this, true)">
+                        <span>${opt}</span> <span>👉</span>
+                    </button>
+                `).join('');
+            }, 1400);
+        }
+
+        // 7. Contract Stamp
+        function signContract() {
+            document.getElementById('contract-stamp').style.display = 'inline-block';
+            const btn = document.getElementById('contract-btn');
+            btn.textContent = "✓ MÜHÜRLENDİ (İtiraz Edilemez!)";
+            btn.style.background = "#FFE600";
+            triggerStickerBomb();
+        }
+
+        // 8. Runaway Button Finale
+        const funnyDodges = [
+            "Yakalayamazsın Ruskim 😜",
+            "Yanlış buton! 😂",
+            "Oraya basmak yasak 🚫",
+            "Hala mı deniyorsun? 😘",
+            "Yeşil butona bas! 👉"
+        ];
+        let dodgeCount = 0;
+
+        function dodgeButton() {
+            const noBtn = document.getElementById('no-final-btn');
+            const x = (Math.random() - 0.5) * 240;
+            const y = (Math.random() - 0.5) * 110;
+            noBtn.style.transform = `translate(${x}px, ${y}px)`;
+            noBtn.textContent = funnyDodges[dodgeCount % funnyDodges.length];
+            dodgeCount++;
+        }
+
+        function winFinale() {
+            document.getElementById('no-final-btn').style.display = 'none';
+            document.getElementById('finale-win-msg').style.display = 'block';
+            triggerStickerBomb();
+            setTimeout(triggerStickerBomb, 350);
+        }
+
+        // 9. Fun 8-Bit Arcade Chiptune Synthesizer (Web Audio API)
+        let audioCtx = null;
+        let chiptuneInterval = null;
+        let playing8Bit = false;
+        const notes8Bit = [523.25, 659.25, 783.99, 1046.5, 783.99, 1046.5, 880, 698.46, 783.99, 523.25];
+        let step8Bit = 0;
+
+        function play8BitBeep(freq) {
+            if (!audioCtx) return;
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = 'square';
+            osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+            gain.gain.setValueAtTime(0.03, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.18);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.2);
+        }
+
+        function toggle8BitMusic() {
+            const btn = document.getElementById('music-btn');
+            if (!playing8Bit) {
+                if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                if (audioCtx.state === 'suspended') audioCtx.resume();
+                playing8Bit = true;
+                btn.textContent = "🔊 8-Bit Oyun Müziği: AÇIK";
+                btn.style.background = "#00E5A3";
+                chiptuneInterval = setInterval(() => {
+                    play8BitBeep(notes8Bit[step8Bit % notes8Bit.length]);
+                    step8Bit++;
+                }, 220);
+            } else {
+                playing8Bit = false;
+                clearInterval(chiptuneInterval);
+                btn.textContent = "🔊 8-Bit Oyun Müziği: KAPALI";
+                btn.style.background = "#FFE600";
+            }
+        }
+    </script>
+</body>
+</html>
